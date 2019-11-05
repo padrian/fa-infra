@@ -1,0 +1,48 @@
+fullnameOverride: future-airlines-jenkins
+rbac:
+  create: true
+master:
+  serviceType: NodePort
+  servicePort: 8080
+  nodePort: 31080
+  jenkinsAdminEmail: padrian.baba@gmail.com
+  ingress:
+    enabled: false
+persistence:
+  size: 15Gi
+agent:
+  image: odavid/jenkins-jnlp-slave
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 1512Mi 
+  volumes:
+    - type: HostPath
+      hostPath: /var/run/docker.sock
+      mountPath: /var/run/docker.sock
+installPlugins:
+  - kubernetes:1.18.2
+  - workflow-job:2.33
+  - workflow-aggregator:2.6
+  - credentials-binding:1.19
+  - git:3.11.0  
+  - prometheus:2.0.6
+  - github:1.29.5
+  - github-api:1.95
+  - github-pullrequest:0.2.6
+  - slack:2.34
+  - pipeline-stage-view:2.12
+  - amazon-ecr:1.6
+  - aws-credentials:1.28
+  - docker-plugin:2.60.3
+  - docker-build-step:2.4
+  - docker-build-publish:1.3.2
+  
+prometheus:
+  enabled: true
+  scrapeInterval: 60s
+  scrapeEndpoint: /prometheus
+#master.loadBalancerSourceRanges:
