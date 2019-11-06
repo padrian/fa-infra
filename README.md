@@ -8,3 +8,4 @@ Terrafrom is used to automate the infrastructure setup (IAC)
 - Jenkins for CI/CD
 - Grafana, Prometheus for monitoring
 - AWS ECR for Container Registry
+- Container Vulnerability Scanning Enabled for AWS ECR

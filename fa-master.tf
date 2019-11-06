@@ -52,8 +52,15 @@ resource "aws_security_group" "fa_sg" {
   }
 
   ingress {
-    from_port   = 31080
-    to_port     = 31080
+    from_port   = 31868
+    to_port     = 31868
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 30461
+    to_port     = 30461
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
